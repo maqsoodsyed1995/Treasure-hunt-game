@@ -22,55 +22,89 @@
 (def currentY 0)
 (def currenttempX 0)
 (def currenttempY 0)
-(def side false)
+(def xaxis '())
+(def yaxis '())
 
 (defn Game []
 
 
+
+     (def c (assoc (get ls currentX) currentY "+"))
+    (def ls (assoc ls currentX c ))
+
+     (doseq [x ls]
+      (println x)
+      )
   (while (not= (get (get ls currentX) currentY) (.charAt "@#!" 0))
 
 
     (do
-         (println currentX)
-         (println currentY)
-         (println (get (get ls currentX) currentY))
 
-         (if (= (get (get ls currentX) currentY) (.charAt "-#!" 0))
-           (do (def c (assoc (get ls currentX) currentY "+"))
-               (println (get (get ls currentX) currentY))
-               (def currenttempY (+ currentY 1))
-               (def ls (assoc ls currentX c ))
-               )
-           )
-          (println currentY)
+      (cond
 
-         (println (get (get ls currentX) currentY))
-         (println (.charAt "-#!" 1))
+        (or (=  (get (get ls (+ 1 currentX)) currentY) (.charAt "-#!" 0))
+            (= (get (get ls currentX) (+ 1 currentY)) (.charAt "-#!" 0))
+            (= (get (get ls (- currentX 1 )) currentY) (.charAt "-#!" 0))
+            (= (get (get ls currentX) (- currentY 1 )) (.charAt "-#!" 0))
+            ) (do
+
+                (cond
+
+                  (= (get (get ls currentX) (+ 1 currentY)) (.charAt "-#!" 0)) (do
+
+                                                                                 (def xaxis (cons currentX xaxis))
+                                                                                 (def yaxis (cons currentY yaxis))
+                                                                                 (def c (assoc (get ls currentX) currentY "+"))
+                                                                                 (def ls (assoc ls currentX c ))
+                                                                                 (def currentY (+ currentY 1) )
+                                                                                 )
+
+                  (=  (get (get ls (+ 1 currentX)) currentY) (.charAt "-#!" 0)) (do
+
+                                                                                  (def xaxis (cons currentX xaxis))
+                                                                                  (def yaxis (cons currentY yaxis))
+                                                                                  (def c (assoc (get ls currentX) currentY "+"))
+                                                                                  (def ls (assoc ls currentX c ))
+                                                                                  (def currentX (+ currentX 1) )
 
 
-         (if (= (get (get ls currentX) currentY) (.charAt "-#!" 1))
-           (do
+                                                                                  )
+                  (= (get (get ls currentX) (- currentY 1 )) (.charAt "-#!" 0)) (do
+                                                                                  (def xaxis (cons currentX xaxis))
+                                                                                  (def yaxis (cons currentY yaxis))
+                                                                                  (def c (assoc (get ls currentX) currentY "+"))
+                                                                                  (def ls (assoc ls currentX c ))
+                                                                                  (def currentY (- currentY 1) )
+                                                                                  )
 
+                  (= (get (get ls (- currentX 1 )) currentY) (.charAt "-#!" 0)) (do
 
-             (def currenttempY (- currentY 1))
-             (def currenttempX (+ currentX 1))
-             (println (get (get ls currentX) currentY))
-             (def side false)
+                                                                                  (def xaxis (cons currentX xaxis))
+                                                                                  (def yaxis (cons currentY yaxis))
+                                                                                  (def c (assoc (get ls currentX) currentY "+"))
+                                                                                  (def ls (assoc ls currentX c ))
 
-             )
-           )
+                                                                                  (def currentX (- currentX 1) )
 
-         (println currentX)
+                                                                                  )
+
+                        )
+
+        )
+
          )
 
-    (println (type currenttempX))
-    (def currentX (+ currenttempX 0) )
-    (def currentY (+ currenttempY 0))
+  )
 
+    (println currentX)
+    (println currentY)
+    (println xaxis)
+    (println yaxis)
+
+         )
 
 
   )
-         )
 
 (Game)
 (doseq [x ls]
