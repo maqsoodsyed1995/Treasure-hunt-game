@@ -4,37 +4,64 @@
   )
 
 
-(def names (slurp "Example.txt"))
-
-(def lines (string/split-lines names))
-
-(def ls [])
-(doseq [x lines]
-  (def DB [])
-  (doseq [y x]
-
-    (def DB (conj DB y))
-    )
-  (def ls (conj ls DB))
-  )
-
 (def currentX 0)
 (def currentY 0)
-
-
 (def xaxis '())
 (def yaxis '())
+(def ls [])
+
+
+(defn loadFile []
+
+  (def names (slurp "map.txt"))
+  (def lines (string/split-lines names))
+
+  (doseq [x lines]
+    (def DB [])
+    (doseq [y x]
+
+      (def DB (conj DB y))
+      )
+    (def ls (conj ls DB))
+    )
+
+  )
+
+(defn checkFile []
+
+           (def listcount (count (get ls 0)))
+
+           (doseq [lcount ls]
+
+             (if (not= listcount  (count lcount))
+
+               (do
+
+                 (println "The Game Cannot be continued, File is not proper")
+                 (System/exit 0)
+                 )
+               )
+
+             )
+
+           )
+
 
 (defn Game []
-
 
 
      (def c (assoc (get ls currentX) currentY "+"))
     (def ls (assoc ls currentX c ))
 
-     (doseq [x ls]
-      (println x)
+  (doseq [x ls]
+
+    (doseq [y x]
+
+      (print y)
+      (print " ")
       )
+    (println " ")
+    )
   (while (and (not=  (get (get ls (+ 1 currentX)) currentY) (.charAt "@#!" 0))
              (not= (get (get ls currentX) (+ 1 currentY)) (.charAt "@#!" 0))
              (not= (get (get ls (- currentX 1 )) currentY) (.charAt "@#!" 0))
@@ -51,7 +78,7 @@
             (= (get (get ls (- currentX 1 )) currentY) (.charAt "-#!" 0))
             (= (get (get ls currentX) (- currentY 1 )) (.charAt "-#!" 0))
             ) (do
-                  (println "inside first if ")
+
                 (cond
 
                   (= (get (get ls currentX) (+ 1 currentY)) (.charAt "-#!" 0)) (do
@@ -101,7 +128,7 @@
             (= (get (get ls (- currentX 1 )) currentY) (str (.charAt "#+!" 1)))
             (= (get (get ls currentX) (- currentY 1 )) (str (.charAt "#+!" 1)))
             ) (do
-                 (println "insode second")
+
                 (cond
 
                   (= (get (get ls currentX) (+ 1 currentY)) (str (.charAt "#+!" 1))) (do
@@ -161,9 +188,16 @@
                 )
 
         :else (do
-                (println "Treasure Not Found")
+
+                (println "\n \nTreasure Not Found")
                 (doseq [x ls]
-                  (println x)
+
+                  (doseq [y x]
+
+                    (print y)
+                    (print " ")
+                    )
+                  (println " ")
                   )
 
                 (System/exit 0)
@@ -175,16 +209,6 @@
 
   )
 
-    (println currentX)
-    (println currentY)
-    (println xaxis)
-    (println yaxis)
-
-
-
-
-
-
 
 
 
@@ -194,9 +218,21 @@
 
   )
 
+
+(loadFile)
+(checkFile)
 (Game)
+
+(println " ")
+(println "Woo hoo, I found the treasure :-) \n")
 (doseq [x ls]
-  (println x)
+
+  (doseq [y x]
+
+    (print y)
+    (print " ")
+    )
+  (println " ")
   )
 
 
