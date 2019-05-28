@@ -50,9 +50,6 @@
 (defn Game []
 
 
-     (def c (assoc (get ls currentX) currentY "+"))
-    (def ls (assoc ls currentX c ))
-
   (doseq [x ls]
 
     (doseq [y x]
@@ -62,6 +59,11 @@
       )
     (println " ")
     )
+
+     (def c (assoc (get ls currentX) currentY "+"))
+    (def ls (assoc ls currentX c ))
+
+
   (while (and (not=  (get (get ls (+ 1 currentX)) currentY) (.charAt "@#!" 0))
              (not= (get (get ls currentX) (+ 1 currentY)) (.charAt "@#!" 0))
              (not= (get (get ls (- currentX 1 )) currentY) (.charAt "@#!" 0))

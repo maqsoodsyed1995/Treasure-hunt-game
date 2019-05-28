@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5e0a74a1-cf0a-4129-887d-bf934729172d" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/src/assignment2/Example.txt" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/assignment2/core.clj" beforeDir="false" afterPath="$PROJECT_DIR$/src/assignment2/core.clj" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/classes/" />
@@ -20,8 +19,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/assignment2/core.clj">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="230">
-              <caret line="48" lean-forward="true" selection-start-line="48" selection-end-line="48" />
+            <state relative-caret-position="306">
+              <caret line="60" column="5" selection-start-line="60" selection-start-column="5" selection-end-line="60" selection-end-column="5" />
             </state>
           </provider>
         </entry>
@@ -256,8 +255,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/assignment2/core.clj">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="230">
-          <caret line="48" lean-forward="true" selection-start-line="48" selection-end-line="48" />
+        <state relative-caret-position="306">
+          <caret line="60" column="5" selection-start-line="60" selection-start-column="5" selection-end-line="60" selection-end-column="5" />
         </state>
       </provider>
     </entry>
